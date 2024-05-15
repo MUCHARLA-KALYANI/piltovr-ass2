@@ -32,17 +32,18 @@ const ContactUs = () => {
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Information Technology</h3>
                 <p>Phone: +91 1234 567890</p>
-                <p>Email: {'it\@svecw.edu.in'}</p>
+                <p>Email: {`it@svecw.edu.in`}</p>
+
               </div>
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Computer Science</h3>
                 <p>Phone: +91 9876 543210</p>
-                <p>Email:{ 'cs\@svecw.edu.in'}</p>
+                <p>Email:{ `cs@svecw.edu.in`}</p>
               </div>
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Electronics and Communication</h3>
                 <p>Phone: +91 5678 901234</p>
-                <p>Email: {'ec\@svecw.edu.in'}</p>
+                <p>Email: {`ec@svecw.edu.in`}</p>
               </div>
             </div>
             <div className="mb-4 p-4 bg-white bg-opacity-80">
@@ -50,12 +51,12 @@ const ContactUs = () => {
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Principal's Office</h3>
                 <p>Phone: +91 2345 678901</p>
-                <p>Email:{'principal\@svecw.edu.in'} </p>
+                <p>Email:{`principal@svecw.edu.in`} </p>
               </div>
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Admissions Office</h3>
                 <p>Phone: +91 9012 345678</p>
-                <p>Email: {'admissions\@svecw.edu.in'}</p>
+                <p>Email: {`admissions@svecw.edu.in`}</p>
               </div>
             </div>
           </div>
