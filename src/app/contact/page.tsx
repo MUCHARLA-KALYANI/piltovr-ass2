@@ -8,15 +8,15 @@ const ContactUs = () => {
       <div
         style={{
           backgroundImage: `url("https://vishnu.edu.in/images/hostels1.jpg")`,
-          backgroundSize: 'cover',
+          backgroundSize: "cover",
         }}
       >
         <div
           className="container mx-auto py-8"
           style={{
-            marginTop: '105px',
-            backgroundColor: 'rgba(255, 255, 255, 0.4)',
-            color: 'black',
+            marginTop: "105px",
+            backgroundColor: "rgba(255, 255, 255, 0.4)",
+            color:" black",
           }}
         >
           <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
