@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Departments from "./Departments";
+import Image from 'next/image';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,13 +32,7 @@ export const Navbar = () => {
     <nav className="bg-green-800 text-white  sm:p-4 md:flex md:justify-between md:items-center fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
       <div className="flex items-center ">
-          <img
-            src="https://www.pikpng.com/pngl/b/270-2700536_sri-vishnu-educational-society-bv-raju-institute-of.png"
-            width="90"
-            height="80"
-            alt="Logo"
-            className="mr-2 ml-0"
-          />
+      <Image src="https://www.pikpng.com/pngl/b/270-2700536_sri-vishnu-educational-society-bv-raju-institute-of.png" width="90" height="80" alt="Logo" className="mr-2 ml-0" />
         
           <span className="text-1xl  ml-0" style={{ fontSize: "20px", fontWeight:'inherit'}}>
             SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN<br>
@@ -61,6 +56,13 @@ export const Navbar = () => {
             ABOUT
           </Link>
          <Link href="/departments" className="mx-2 hover:text-gray-300"><Departments /></Link> 
+         <Link
+            rel="stylesheet"
+            href="/about"
+            className="mx-2 hover:text-gray-300"
+          >
+            BRANCHES
+          </Link>
           <Link
             rel="stylesheet"
             href="/contact"

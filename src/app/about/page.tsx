@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Navbar } from '../components/Navbar';
+import Image from 'next/image';
 
 const about = () => {
   return (
@@ -13,7 +14,7 @@ const about = () => {
           </p>
           <div className="flex flex-col gap-8">
             <div className="bg-white text-black rounded-lg p-6 flex items-center">
-              <img
+              <Image
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS0X4pSYR1leqttEtyQ03iY-bVd_Q4frKQzgJAjyQCfHQS7FyIsQQjwlO-zd7CkdxLlC8&usqp=CAU"
                 alt="Our History"
                 className="w-64 h-48 mr-6"
@@ -29,7 +30,7 @@ const about = () => {
               </div>
             </div>
             <div className="bg-white text-black rounded-lg p-6 flex items-center">
-              <img
+              <Image
                 src="https://svecw.edu.in/wp-content/uploads/2024/04/Empowering-Minds-with-Technology-Students-Engage-in-Learning-Together-at-Workstations.webp"
                 alt="Our Mission"
                 className="w-64 h-48 mr-6"
@@ -42,7 +43,7 @@ const about = () => {
               </div>
             </div>
             <div className="bg-white text-black rounded-lg p-6 flex items-center">
-              <img
+              <Image
                 src="https://svecw.edu.in/wp-content/uploads/2024/03/footer-international-yoga-day-svecw-bhimavaram.webp"
                 alt="Our Values"
                 className="w-64 h-48 mr-6"
