@@ -13,18 +13,17 @@ const ContactUs = () => {
       >
         <div
           className="container mx-auto py-8"
-          style={{
-            marginTop: "105px",
-            backgroundColor: "rgba(255, 255, 255, 0.4)",
-            color:" black",
-          }}
+          style={{ marginTop: "105px", backgroundColor: "rgba(255, 255, 255, 0.4)", color: " black" }}
         >
           <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="mb-4 p-4 bg-white bg-opacity-80">
               <h2 className="text-2xl font-bold mb-4">College Address</h2>
               <p className="mb-4">
-                {'Shri Vishnu Engineering College for Women,'}<br />{' Bhimavaram - 534 202,'}<br />{' West Godavari District,'}<br />{' Andhra Pradesh, India.'}
+              {` Shri Vishnu Engineering College for Women,
+                Bhimavaram - 534 202,
+                West Godavari District,
+              Andhra Pradesh, India`}
               </p>
             </div>
             <div className="mb-4 p-4 bg-white bg-opacity-80">
@@ -33,12 +32,11 @@ const ContactUs = () => {
                 <h3 className="text-xl font-bold">Information Technology</h3>
                 <p>Phone: +91 1234 567890</p>
                 <p>Email: {`it@svecw.edu.in`}</p>
-
               </div>
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Computer Science</h3>
                 <p>Phone: +91 9876 543210</p>
-                <p>Email:{ `cs@svecw.edu.in`}</p>
+                <p>Email:{`cs@svecw.edu.in`}</p>
               </div>
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Electronics and Communication</h3>
@@ -51,7 +49,7 @@ const ContactUs = () => {
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Principal's Office</h3>
                 <p>Phone: +91 2345 678901</p>
-                <p>Email:{`principal@svecw.edu.in`} </p>
+                <p>Email:{`principal@svecw.edu.in`}</p>
               </div>
               <div className="mb-4">
                 <h3 className="text-xl font-bold">Admissions Office</h3>
