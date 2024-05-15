@@ -2,6 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { Navbar } from '../components/Navbar';
 import Image from 'next/image';
+import historyImage from '../assets/bvraju.jpg';
+import missionImage from '../assets/tech.jpg';
+import valuesImage from '../assets/yoga.jpg';
 
 const about = () => {
   return (
@@ -9,15 +12,17 @@ const about = () => {
       <Navbar />
       <div className="container mx-auto py-8" style={{ marginTop: "120px" }}>
         <div className="max-w-3xl mx-auto">
-          <p className="text-lg mb-8 text-center " style={{ fontWeight:'bold' , fontSize:'30px', fontFamily:'TimesNewRoman'}}>
-            "Discover the rich history, mission, and values<br></br><br></br> that shape our institution."
+          <p className="text-lg mb-8 text-center" style={{ fontWeight: 'bold', fontSize: '30px', fontFamily: 'TimesNewRoman' }}>
+            {'"Discover the rich history, mission, and values that shape our institution."'}
           </p>
           <div className="flex flex-col gap-8">
             <div className="bg-white text-black rounded-lg p-6 flex items-center">
               <Image
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS0X4pSYR1leqttEtyQ03iY-bVd_Q4frKQzgJAjyQCfHQS7FyIsQQjwlO-zd7CkdxLlC8&usqp=CAU"
+                src={historyImage}
                 alt="Our History"
                 className="w-64 h-48 mr-6"
+                width={256}
+                height={192}
               />
               <div>
                 <h2 className="text-2xl font-bold mb-4">Our History</h2>
@@ -31,9 +36,11 @@ const about = () => {
             </div>
             <div className="bg-white text-black rounded-lg p-6 flex items-center">
               <Image
-                src="https://svecw.edu.in/wp-content/uploads/2024/04/Empowering-Minds-with-Technology-Students-Engage-in-Learning-Together-at-Workstations.webp"
+                src={missionImage}
                 alt="Our Mission"
                 className="w-64 h-48 mr-6"
+                width={256}
+                height={192}
               />
               <div>
                 <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
@@ -44,9 +51,11 @@ const about = () => {
             </div>
             <div className="bg-white text-black rounded-lg p-6 flex items-center">
               <Image
-                src="https://svecw.edu.in/wp-content/uploads/2024/03/footer-international-yoga-day-svecw-bhimavaram.webp"
+                src={valuesImage}
                 alt="Our Values"
                 className="w-64 h-48 mr-6"
+                width={256}
+                height={192}
               />
               <div>
                 <h2 className="text-2xl font-bold mb-4">Our Values</h2>
@@ -60,9 +69,9 @@ const about = () => {
             </div>
           </div>
           <div className="flex justify-center mt-8">
-          <Link href="/" className="inline-block mt-8 bg-green-800 text-white py-3 px-6 rounded-md hover:bg-green-700 transition-colors duration-300 items-center">
-            Back to Home
-          </Link>
+            <Link href="/" className="inline-block mt-8 bg-green-800 text-white py-3 px-6 rounded-md hover:bg-green-700 transition-colors duration-300 items-center">
+              Back to Home
+            </Link>
           </div>
         </div>
       </div>

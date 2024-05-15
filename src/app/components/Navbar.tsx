@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import Departments from "./Departments";
 import Image from 'next/image';
+import logoImage from '../assets/vishnu.png'; // Import the logo image locally
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   function getMenuClasses() {
     let menuClasses = [];
@@ -29,54 +29,40 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="bg-green-800 text-white  sm:p-4 md:flex md:justify-between md:items-center fixed top-0 left-0 right-0 z-50">
+    <nav className="bg-green-800 text-white sm:p-4 md:flex md:justify-between md:items-center fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-      <div className="flex items-center ">
-      <Image src="https://www.pikpng.com/pngl/b/270-2700536_sri-vishnu-educational-society-bv-raju-institute-of.png" width="90" height="80" alt="Logo" className="mr-2 ml-0" />
-        
-          <span className="text-1xl  ml-0" style={{ fontSize: "20px", fontWeight:'inherit'}}>
-            SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN<br>
-            </br>BHIMAVARAM
+        <div className="flex items-center">
+          <Image
+            src={logoImage}
+            alt="Logo"
+            width={90}
+            height={80}
+            className="mr-2 ml-0"
+          />
+          <span className="text-1xl ml-0" style={{ fontSize: "20px", fontWeight: 'inherit' }}>
+            SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN<br />
+            BHIMAVARAM
           </span>
-          </div>
-       
+        </div>
         <div className={getMenuClasses()}>
-          <Link
-            rel="stylesheet"
-            href="/"
-            className="mx-2 hover:text-gray-300"
-          >
+          <Link href="/" className="mx-2 hover:text-gray-300">
             HOME
           </Link>
-          <Link
-            rel="stylesheet"
-            href="/about"
-            className="mx-2 hover:text-gray-300"
-          >
+          <Link href="/about" className="mx-2 hover:text-gray-300">
             ABOUT
           </Link>
-         <Link href="/departments" className="mx-2 hover:text-gray-300"><Departments /></Link> 
-         <Link
-            rel="stylesheet"
-            href="/about"
-            className="mx-2 hover:text-gray-300"
-          >
+          <Link href="/departments" className="mx-2 hover:text-gray-300">
+            <Departments />
+          </Link>
+          <Link href="/about" className="mx-2 hover:text-gray-300">
             BRANCHES
           </Link>
-          <Link
-            rel="stylesheet"
-            href="/contact"
-            className="mx-2 hover:text-gray-300"
-          >
+          <Link href="/contact" className="mx-2 hover:text-gray-300">
             CONTACT US
           </Link>
         </div>
         <div className="md:hidden flex items-center">
-          <button
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          >
+          <button onClick={() => setIsOpen(!isOpen)}>
             <svg
               className="w-6 h-6"
               fill="none"

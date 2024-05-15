@@ -12,10 +12,7 @@ const ContactUs = () => {
             <div className="mb-4 p-4 bg-white bg-opacity-80">
               <h2 className="text-2xl font-bold mb-4">College Address</h2>
               <p className="mb-4">
-                Shri Vishnu Engineering College for Women,<br />
-                Bhimavaram - 534 202,<br />
-                West Godavari District,<br />
-                Andhra Pradesh, India.
+              {'Shri Vishnu Engineering College for Women,<br /> Bhimavaram - 534 202,<br /> West Godavari District,<br /> Andhra Pradesh, India.'}
               </p>
             </div>
             <div className="mb-4 p-4 bg-white bg-opacity-80">
