@@ -12,8 +12,8 @@ const about = () => {
       <Navbar />
       <div className="container mx-auto py-8" style={{ marginTop: "120px" }}>
         <div className="max-w-3xl mx-auto">
-          <p className="text-lg mb-8 text-center" style={{ fontWeight: 'bold', fontSize: '30px', fontFamily: 'TimesNewRoman' }}>
-            {'"Discover the rich history, mission, and values that shape our institution."'}
+          <p className="text-lg mb-8 text-center" style={{ fontWeight: "bold", fontSize:" 30px", fontFamily: "TimesNewRoman" }}>
+            {`"Discover the rich history, mission, and values that shape our institution."`}
           </p>
           <div className="flex flex-col gap-8">
             <div className="bg-white text-black rounded-lg p-6 flex items-center">

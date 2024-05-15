@@ -11,16 +11,16 @@ const HomePage = () => {
         className="bg-cover bg-center"
         style={{
           backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_x1EeCfbzX_hog9prJtOUWIXkyAg3wQ-9Cb63_He8Ah8c2faFIhSZrcJ9D3tR3GMiFdo&usqp=CAU')`,
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '25%',
-          minHeight: 'calc(60vh - 80px)', 
-          marginTop:'100px',// Adjust the height as needed
-          justifyContent:'center'
+          backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "25%",
+          minHeight: "calc(60vh - 80px)", 
+          marginTop:"100px",// Adjust the height as needed
+          justifyContent:"center"
         }}
       >
         <div className="bg-black bg-opacity-50 min-h-screen">
-          <div className="container mx-auto py-8 pt-20" style={{ marginTop: '50px' }}>
+          <div className="container mx-auto py-8 pt-20" style={{ marginTop: "50px "}}>
             <header className="text-center mb-8 text-white">
               <h1 className="text-4xl font-bold mb-4">Welcome to SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN</h1>
               <p className="text-lg">Discover a world of knowledge and growth.</p>
