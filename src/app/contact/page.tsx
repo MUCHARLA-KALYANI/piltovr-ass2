@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navbar } from '../components/Navbar';
+
+import { Navbar } from "../components/Navbar";
 
 const ContactUs = () => {
   return (
@@ -47,7 +47,7 @@ const ContactUs = () => {
             <div className="mb-4 p-4 bg-white bg-opacity-80">
               <h2 className="text-2xl font-bold mb-4">Administration Contacts</h2>
               <div className="mb-4">
-                <h3 className="text-xl font-bold">Principal's Office</h3>
+                <h3 className="text-xl font-bold">Principal Office</h3>
                 <p>Phone: +91 2345 678901</p>
                 <p>Email:{`principal@svecw.edu.in`}</p>
               </div>

@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import Departments from "./Departments";
-import Image from 'next/image';
-import logoImage from '../assets/vishnu.png'; // Import the logo image locally
+import Image from "next/image";
+import logoImage from "../assets/vishnu.png"; // Import the logo image locally
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ export const Navbar = () => {
             height={80}
             className="mr-2 ml-0"
           />
-          <span className="text-1xl ml-0" style={{ fontSize: "20px", fontWeight: 'inherit' }}>
+          <span className="text-1xl ml-0" style={{ fontSize: "20px", fontWeight: "inherit"}}>
             SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN<br />
             BHIMAVARAM
           </span>

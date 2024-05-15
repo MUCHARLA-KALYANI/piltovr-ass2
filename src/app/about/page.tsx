@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import { Navbar } from '../components/Navbar';
-import Image from 'next/image';
-import historyImage from '../assets/bvraju.jpg';
-import missionImage from '../assets/tech.jpg';
-import valuesImage from '../assets/yoga.jpg';
+
+import Link from "next/link";
+import { Navbar } from "../components/Navbar";
+import Image from "next/image";
+import historyImage from "../assets/bvraju.jpg";
+import missionImage from "../assets/tech.jpg";
+import valuesImage from "../assets/yoga.jpg";
 
 const about = () => {
   return (

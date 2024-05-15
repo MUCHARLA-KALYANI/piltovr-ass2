@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import errorImage from './assets/404.jpg'
+import Image from "next/image";
+import errorImage from "./assets/404.jpg";
 const NotFoundPage = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100vh" }}>

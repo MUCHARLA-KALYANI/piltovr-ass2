@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navbar } from './components/Navbar';
+import React from "react";
+import { Navbar } from "./components/Navbar";
 
 const HomePage = () => {
   return (
@@ -10,7 +10,7 @@ const HomePage = () => {
       <div
         className="bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_x1EeCfbzX_hog9prJtOUWIXkyAg3wQ-9Cb63_He8Ah8c2faFIhSZrcJ9D3tR3GMiFdo&usqp=CAU')`,
+          backgroundImage: `url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_x1EeCfbzX_hog9prJtOUWIXkyAg3wQ-9Cb63_He8Ah8c2faFIhSZrcJ9D3tR3GMiFdo&usqp=CAU")`,
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           backgroundSize: "25%",
