@@ -15,7 +15,7 @@ const HomePage = () => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "25%",
           minHeight: "calc(60vh - 80px)", 
-          marginTop:"100px",// Adjust the height as needed
+          marginTop:"100px",
           justifyContent:"center"
         }}
       >
