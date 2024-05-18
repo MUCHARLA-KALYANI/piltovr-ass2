@@ -1,20 +1,88 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useState } from "react";
 import Departments from "./Departments";
 import Image from "next/image";
 import logoImage from "../assets/vishnu.png";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
 
+const UserCard = ({ userData }: { userData: User }) => {
+  return (
+    <div className="user-card border p-4 rounded-md text-black bg-white shadow-lg">
+      <h2 className="text-xl font-bold mb-2">{userData.name}</h2>
+      <p><strong>Email:</strong> {userData.email}</p>
+      <p><strong>Phone:</strong> {userData.phone}</p>
+      <p><strong>Address:</strong> {`${userData.address.street}, ${userData.address.suite}, ${userData.address.city}, ${userData.address.zipcode}`}</p>
+      <p><strong>Website:</strong> {userData.website}</p>
+      <p><strong>Company:</strong> {userData.company.name}</p>
+    </div>
+  );
+};
+
+const UserCardOverlay = ({ userData, onClose }: { userData: User[]; onClose: () => void }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto">
+      <div className="bg-white p-8 rounded-lg relative max-h-full overflow-y-auto w-full max-w-4xl">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-800 hover:text-red-600"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+        <div className="grid grid-cols-1 gap-4">
+          {userData.map((user: User) => (
+            <UserCard key={user.id} userData={user} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isBranchMenuOpen, setIsBranchMenuOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({ username: "", password: "" }); 
+  const [errors, setErrors] = useState({ username: "", password: "" });
   const router = useRouter();
+  const [userData, setUserData] = useState<User[]>([]);
+
 
   function getMenuClasses() {
     let menuClasses = [];
@@ -40,34 +108,28 @@ export const Navbar = () => {
     setShowLoginForm(!showLoginForm);
   };
 
-  const toggleBranchMenu = () => {
-    setIsBranchMenuOpen(!isBranchMenuOpen);
-    if (!isBranchMenuOpen) {
-      document.querySelector("#branches-menu")?.scrollIntoView({ behavior: "smooth"});
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    let formErrors = { username: "", password:"" };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let formErrors = { username: "", password: "" };
     let isValid = true;
-
+  
     if (!username.trim()) {
       formErrors.username = "Username is required";
       isValid = false;
     }
-
+  
     if (!password.trim()) {
       formErrors.password = "Password is required";
       isValid = false;
     }
+  
     const validCredentials = [
-      { username: "user1", password:"password1"},
+      { username: "Bret", password: "password1" },
       { username: "user2", password: "password2" },
     ];
   
     const isValidCredentials = validCredentials.some(
-      cred => cred.username === username && cred.password === password
+      (cred) => cred.username === username && cred.password === password
     );
   
     if (!isValidCredentials) {
@@ -79,22 +141,18 @@ export const Navbar = () => {
       setErrors(formErrors);
       return;
     }
-
-    
-    const user = {
-      username: username,
-      password: password, 
-    };
-
-    
-    console.log("User Details:", user);
-    handleCloseLogin();
-    router.push("/");
+  
+    try {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      setUserData(response.data);
+      handleCloseLogin();
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   };
-
   const handleCloseLogin = () => {
     setShowLoginForm(false);
-    setErrors({ username: "", password:""});
+    setErrors({ username: "", password: "" });
   };
 
   return (
@@ -108,12 +166,6 @@ export const Navbar = () => {
             height={80}
             className="mr-2 ml-0"
           />
-          <span
-            className="text-1xl ml-0"
-            style={{ fontSize: "20px", fontWeight: "inherit" }}
-          >
-            SHRI VISHNU ENGINEERING COLLEGE FOR WOMEN<br /><span className="text-black">BHIMAVARAM</span> 
-          </span>
         </div>
         <div className={getMenuClasses()}>
           <Link href="/" className="mx-2 hover:text-gray-300">
@@ -128,14 +180,18 @@ export const Navbar = () => {
           <Link href="/branch" className="mx-2 hover:text-gray-300 ">
             BRANCHES
           </Link>
-          
-           
+          <Link href="/studentsList" className="mx-2 hover:text-gray-300 ">
+           STUDENTS
+          </Link>
           <Link href="/contact" className="mx-2 hover:text-gray-300">
             CONTACT
           </Link>
+          <Link href="/signup" className="mx-2 bg-white text-green px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 text-black">
+            Signup
+          </Link>
           <button
             onClick={handleLogin}
-            className="mx-2 bg-white text-green-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 text-black"
+            className="mx-2 bg-white text-green px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 text-black"
           >
             Login
           </button>
@@ -145,7 +201,7 @@ export const Navbar = () => {
             <svg
               className="w-6 h-6"
               fill="none"
-              stroke="CurrentColor"
+              stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -174,28 +230,25 @@ export const Navbar = () => {
             <div className="flex justify-end">
               <button
                 onClick={handleCloseLogin}
-                className="text-gray-600 hover:text-gray-800"
+                className="text-gray-800 hover:text-red-600"
               >
                 <svg
                   className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
+                    fillRule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
             </div>
-            <h2 className="text-2xl font-bold mb-4 text-black">Login</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label htmlFor="username" className="block mb-2 font-semibold text-black">
+                <label htmlFor="username" className="block text-gray-700">
                   Username
                 </label>
                 <input
@@ -203,12 +256,16 @@ export const Navbar = () => {
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+                  className="mt-1 p-2 border rounded w-full text-black"
                 />
-                {errors.username && <span className="text-red-500">{errors.username}</span>}
+                {errors.username && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.username}
+                  </p>
+                )}
               </div>
-              <div className="mb-6">
-                <label htmlFor="password" className="block mb-2 font-semibold text-black">
+              <div className="mb-4">
+                <label htmlFor="password" className="block text-gray-700">
                   Password
                 </label>
                 <input
@@ -216,20 +273,33 @@ export const Navbar = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-black"
+                  className="mt-1 p-2 border rounded w-full text-black"
                 />
-                {errors.password && <span className="text-red-500">{errors.password}</span>}
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.password}
+                  </p>
+                )}
               </div>
-              <button
-                type="submit"
-                className="w-full py-2 px-4 bg-green-800 text-white font-semibold rounded-md hover:bg-green-700 transition-colors duration-300"
-              >
-                Login
-              </button>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+                >
+                  Login
+                </button>
+              </div>
             </form>
           </div>
         </div>
       )}
+     {userData.length > 0 && (
+  <UserCardOverlay
+    userData={userData}
+    onClose={() => setUserData([])}
+  />
+)}
+
     </nav>
   );
 };

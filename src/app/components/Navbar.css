@@ -1,0 +1,43 @@
+.user-card {
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+  
+  .user-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .user-card:hover:before {
+    animation: rotate 2s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% {
+      border-color: transparent transparent transparent #4299e1;
+      transform: rotate(0deg);
+    }
+    25% {
+      border-color: transparent #4299e1 transparent transparent;
+      transform: rotate(90deg);
+    }
+    50% {
+      border-color: #4299e1 transparent transparent transparent;
+      transform: rotate(180deg);
+    }
+    75% {
+      border-color: transparent transparent #4299e1 transparent;
+      transform: rotate(270deg);
+    }
+    100% {
+      border-color: transparent transparent transparent #4299e1;
+      transform: rotate(360deg);
+    }
+  }
