@@ -34,7 +34,7 @@ export default function StudentList() {
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-bold mb-4">Student List</h2>
       {students.length === 0 ? (
-        <p>No students found.</p>
+        <p></p>
       ) : (
         <table className="w-full table-auto">
           <thead>
