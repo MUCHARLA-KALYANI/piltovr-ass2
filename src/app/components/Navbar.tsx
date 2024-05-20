@@ -6,6 +6,11 @@ import Image from "next/image";
 import logoImage from "../assets/vishnu.png";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
+import { NavigationMenu, NavigationMenuLink, NavigationMenuItem } from "@/components/ui/navigation-menu";
+import {Card, CardContent,CardDescription,CardFooter,CardHeader,CardTitle,} from "@/components/ui/card";
+import connectDB from "../lib/mongodb";
+
 interface User {
   id: number;
   name: string;
@@ -32,14 +37,16 @@ interface User {
 
 const UserCard = ({ userData }: { userData: User }) => {
   return (
-    <div className="user-card border p-4 rounded-md text-black bg-white shadow-lg">
+    <Card className="user-card border p-4 rounded-md text-black bg-white shadow-lg">
+      <CardHeader>
       <h2 className="text-xl font-bold mb-2">{userData.name}</h2>
       <p><strong>Email:</strong> {userData.email}</p>
       <p><strong>Phone:</strong> {userData.phone}</p>
       <p><strong>Address:</strong> {`${userData.address.street}, ${userData.address.suite}, ${userData.address.city}, ${userData.address.zipcode}`}</p>
       <p><strong>Website:</strong> {userData.website}</p>
       <p><strong>Company:</strong> {userData.company.name}</p>
-    </div>
+      </CardHeader>
+    </Card>
   );
 };
 
@@ -47,7 +54,7 @@ const UserCardOverlay = ({ userData, onClose }: { userData: User[]; onClose: () 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto">
       <div className="bg-white p-8 rounded-lg relative max-h-full overflow-y-auto w-full max-w-4xl">
-        <button
+        <Button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-800 hover:text-red-600"
         >
@@ -63,7 +70,7 @@ const UserCardOverlay = ({ userData, onClose }: { userData: User[]; onClose: () 
               clipRule="evenodd"
             />
           </svg>
-        </button>
+        </Button>
         <div className="grid grid-cols-1 gap-4">
           {userData.map((user: User) => (
             <UserCard key={user.id} userData={user} />
@@ -156,7 +163,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-800 text-white sm:p-4 md:flex md:justify-between md:items-center fixed top-0 left-0 right-0 z-50">
+    <nav className="bg-green-800 text-white sm:p-4 md:flex md:justify-between md:items-center fixed top-0 left-0 right-0 z-50 shadow-sm dark:bg-gray-950/90">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Image
@@ -189,12 +196,12 @@ export const Navbar = () => {
           <Link href="/signup" className="mx-2 bg-white text-green px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 text-black">
             Signup
           </Link>
-          <button
+          <Button
             onClick={handleLogin}
             className="mx-2 bg-white text-green px-4 py-2 rounded-md hover:bg-gray-300 transition-colors duration-300 text-black"
           >
             Login
-          </button>
+          </Button>
         </div>
         <div className="md:hidden flex items-center">
           <button onClick={() => setIsOpen(!isOpen)}>

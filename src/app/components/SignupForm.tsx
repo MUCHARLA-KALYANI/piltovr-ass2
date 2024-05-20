@@ -1,6 +1,13 @@
 "use client";
 import { useState, ChangeEvent, useEffect, FormEvent } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
 
@@ -23,6 +30,8 @@ export default function SignupForm() {
     const [additional, setAdditional] = useState<FormData["additional"]>("");
     const[error,setError]=useState([]);
     const[success,setSuccess]=useState(false);
+    const router = useRouter();
+
 
     const [errors, setErrors] = useState<Record<keyof FormData, string>>({
         name: '',
@@ -108,7 +117,15 @@ export default function SignupForm() {
                     const {msg,success}= await res.json();
                     setError(msg);
                     setSuccess(success);
-                    
+                    Swal.fire({
+                        title: "Success!",
+                        text: "You have successfully signed up!",
+                        icon: "success",
+                        confirmButtonText: "OK",
+                      }).then(() => {
+                        router.push("/");
+                      });
+                                      
                 } catch (err) {
                     console.error("Error parsing server response:", err);
                 }
@@ -120,122 +137,118 @@ export default function SignupForm() {
 
     return <>
         <div className="container mx-auto mt-10 p-6 bg-white shadow-md rounded-lg max-w-md">
-            <form onSubmit={handleSubmit}>
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Student Signup</h2>
-                <div className="mb-4">
-                    <label htmlFor="name" className="block text-gray-700">
-                        Name:
-                    </label>
-                    <input type="text" className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black" id="name"
-                        name="name"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        required
-                    />
-                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700">
-                        Email:
-                    </label>
-                    <input
-                        type="email"
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        required
-                    />
-                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="phone" className="block text-gray-700">
-                        Phone Number:
-                    </label>
-                    <input
-                        type="tel"
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        id="phone"
-                        name="phone"
-                        value={phone}
-                        onChange={e => setPhone(e.target.value)}
-                        required
-                    />
-                    {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-                </div>
-
-                <div className="mb-4">
-                    <label htmlFor="address" className="block text-gray-700">
-                        Address:
-                    </label>
-                    <textarea
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        id="address"
-                        name="address"
-                        value={address}
-                        onChange={e => setAddress(e.target.value)}
-                        required
-                    />
-                    {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
-                </div>
-
-                <div className="mb-4">
-                    <label htmlFor="dob" className="block text-gray-700">
-                        Date of Birth:
-                    </label>
-                    <input
-                        type="date"
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        id="birth"
-                        name="birth"
-                        value={birth}
-                        onChange={e => setBirth(e.target.value)}
-                        required
-                    />
-                    {errors.birth && <p className="text-red-500 text-sm">{errors.birth}</p>}
-                </div>
-
-                <div className="mb-4">
-                    <label htmlFor="course" className="block text-gray-700">
-                        Course:
-                    </label>
-                    <input
-                        type="text"
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        id="course"
-                        name="course"
-                        value={course}
-                        onChange={e => setCourse(e.target.value)}
-                        required
-                    />
-                    {errors.course && <p className="text-red-500 text-sm">{errors.course}</p>}
-                </div>
-
-                <div className="mb-4">
-                    <label htmlFor="additional" className="block text-gray-700">
-                        Additional Information:
-                    </label>
-                    <textarea
-                        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        id="additional"
-                        name="additional"
-                        value={additional}
-                        onChange={e => setAdditional(e.target.value)}
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="w-full px-3 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                >
-                    Submit
-                </button>
-            </form>
-            <div className="mt-4">
-                <Link href="/">
-                    <span className="text-blue-500 hover:underline">Back to Home</span>
-                </Link>
-            </div>
+        <Link href="/">
+        <Cross2Icon className="absolute top-2 right-2 text-gray-500 hover:text-red-500 cursor-pointer" />
+      </Link>
+      <form onSubmit={handleSubmit}>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">
+          Student Signup
+        </h2>
+        <div className="mb-4">
+          <Label htmlFor="name">Name:</Label>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          {errors.name && (
+            <p className="text-red-500 text-sm">{errors.name}</p>
+          )}
         </div>
+        <div className="mb-4">
+          <Label htmlFor="email">Email:</Label>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email}</p>
+          )}
+        </div>
+        <div className="mb-4">
+          <Label htmlFor="phone">Phone Number:</Label>
+          <Input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
+          {errors.phone && (
+            <p className="text-red-500 text-sm">{errors.phone}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <Label htmlFor="address">Address:</Label>
+          <Textarea
+            id="address"
+            name="address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+          {errors.address && (
+            <p className="text-red-500 text-sm">{errors.address}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <Label htmlFor="dob">Date of Birth:</Label>
+          <Input
+            type="date"
+            id="birth"
+            name="birth"
+            value={birth}
+            onChange={(e) => setBirth(e.target.value)}
+            required
+          />
+          {errors.birth && (
+            <p className="text-red-500 text-sm">{errors.birth}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <Label htmlFor="course">Course:</Label>
+          <Input
+            type="text"
+            id="course"
+            name="course"
+            value={course}
+            onChange={(e) => setCourse(e.target.value)}
+            required
+          />
+          {errors.course && (
+            <p className="text-red-500 text-sm">{errors.course}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <Label htmlFor="additional">Additional Information:</Label>
+          <Textarea
+            id="additional"
+            name="additional"
+            value={additional}
+            onChange={(e) => setAdditional(e.target.value)}
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Submit
+        </Button>
+      </form>
+      <div className="mt-4">
+        <Link href="/">
+          <span className="text-blue-500 hover:underline">Back to Home</span>
+        </Link>
+      </div>
+    </div>
     </>
 }
