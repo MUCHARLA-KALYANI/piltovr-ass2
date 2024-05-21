@@ -34,24 +34,24 @@ export default function SignupForm() {
 
 
     const [errors, setErrors] = useState<Record<keyof FormData, string>>({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        birth: '',
-        course: '',
-        additional: '',
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        birth: "",
+        course: "",
+        additional: "",
     });
 
     useEffect(() => {
         const initialErrors: Record<keyof FormData, string> = {
-            name: '',
-            email: '',
-            phone: '',
-            address: '',
-            birth: '',
-            course: '',
-            additional: '',
+            name: "",
+            email: "",
+            phone: "",
+            address: "",
+            birth: "",
+            course: "",
+            additional: "",
         };
         setErrors(initialErrors);
     }, []);
@@ -59,30 +59,30 @@ export default function SignupForm() {
 
     const validate = () => {
         let tempErrors: Record<keyof FormData, string> = {
-            name: '',
-            email: '',
-            phone: '',
-            address: '',
-            birth: '',
-            course: '',
-            additional: '',
+            name: "",
+            email: "",
+            phone: "",
+            address: "",
+            birth: "",
+            course: "",
+            additional: "",
         };
 
-        tempErrors.name = name ? '' : 'Name is required.';
+        tempErrors.name = name ? "" : "Name is required.";
 
-        tempErrors.email = /\S+@\S+\.\S+/.test(email) ? '' : 'Email is invalid.';
+        tempErrors.email = /\S+@\S+\.\S+/.test(email) ? "" : "Email is invalid.";
 
-        tempErrors.phone = phone ? '' : 'Phone number is required.';
+        tempErrors.phone = phone ? "" : "Phone number is required.";
 
-        tempErrors.address = address ? '' : 'Address is required.';
+        tempErrors.address = address ? "" : "Address is required.";
 
-        tempErrors.birth = birth ? '' : 'Date of birth is required.';
+        tempErrors.birth = birth ? "" : "Date of birth is required.";
 
-        tempErrors.course = course ? '' : 'Course is required.';
+        tempErrors.course = course ? "" : "Course is required.";
 
         setErrors(tempErrors);
 
-        return Object.values(tempErrors).every(x => x === '');
+        return Object.values(tempErrors).every(x => x === "");
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

@@ -150,7 +150,7 @@ export const Navbar = () => {
     }
   
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      const response = await axios.get("https://jsonplaceholder.typicode.com/users");
       setUserData(response.data);
       handleCloseLogin();
     } catch (error) {
